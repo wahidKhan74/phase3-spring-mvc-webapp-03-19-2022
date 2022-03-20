@@ -58,7 +58,7 @@ http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 	</bean>
 	
 	<!-- dao bean -->
-	<bean id="dao" class="com.simplilearn.webapp.model.ProductDao">
+	<bean id="dao" class="com.simplilearn.webapp.dao.ProductDao">
 		<property name="template" ref="jt"></property>
 	</bean>
 

@@ -1,4 +1,4 @@
-package com.simplilearn.webapp.model;
+package com.simplilearn.webapp.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+
+import com.simplilearn.webapp.model.Product;
 
 public class ProductDao {
 	
@@ -35,7 +37,20 @@ public class ProductDao {
 	}
 	
 	// add product
-	// update product
-	// delete product
+	public int addProduct(Product product) {
+		String ADD_PRODUCT = "INSERT into product_data(name, price) values ( ? , ?)";
+		return template.update(ADD_PRODUCT,product.getName(), product.getPrice());
+	}
 	
+	// update product
+	public int updateProduct(Product product) {
+		String UPDATE_PRODUCT = "UPDATE product_data set name=?, price=? where id=?";
+		return template.update(UPDATE_PRODUCT,product.getName(), product.getPrice(), product.getId());
+	}
+	
+	// delete product
+	public int deleteProduct(Product product) {
+		String DELETE_PRODUCT = "DELETE from product_data where id=?";
+		return template.update(DELETE_PRODUCT, product.getId());
+	}
 }
